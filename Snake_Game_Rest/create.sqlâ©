@@ -1,0 +1,15 @@
+create table body_parts (id bigint not null, x_coor integer not null, y_coor integer not null, body_part_id bigint, primary key (id))
+create table boundary (id bigint not null, height integer not null, width integer not null, primary key (id))
+create table food (id bigint not null, x_coor integer not null, y_coor integer not null, primary key (id))
+create table game (id bigint not null, boundary_id bigint, food_id bigint, snake_id bigint, primary key (id))
+create table hibernate_sequences (sequence_name varchar(255) not null, next_val bigint, primary key (sequence_name))
+insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+insert into hibernate_sequences(sequence_name, next_val) values ('default',0)
+create table snake (id bigint not null, direction varchar(255), primary key (id))
+alter table body_parts add constraint FKis9svohbgvx912di13t0hms5k foreign key (body_part_id) references snake
+alter table game add constraint FKcolodtphmkpqxam1kd2ge1yx4 foreign key (boundary_id) references boundary
+alter table game add constraint FKs1510d5smcdbtg9jddph8paqm foreign key (food_id) references food
+alter table game add constraint FK3mf2mwe2wnpmyxje4pilntoaa foreign key (snake_id) references snake
